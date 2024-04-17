@@ -3,11 +3,66 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import EmailIcon from '@/components/icons/EmailIcon'
 import PasswordIcon from '@/components/icons/PassswordIcon'
+import MonitorIcon from '@/components/icons/MonitorIcon'
+import StudentIcon from '@/components/icons/StudentIcon'
+import TeacherIcon from '@/components/icons/TeacherIcon'
 
 export default function Auth() {
   return (
     <div className="h-full w-full bg-[#EBF5EE] lg:grid lg:grid-cols-2">
-      <div className="hidden h-full w-full lg:block"></div>
+      <div className="hidden h-full w-full flex-col items-center justify-start px-20 lg:flex">
+        <div className="flex w-full items-center justify-start py-4">
+          <img
+            src="/images/logo-login-page.png"
+            alt="logo"
+            width={78}
+            height={78}
+            sizes="200%"
+          />
+          <h1
+            className={`font-coolvetica text-verdee pl-6 text-[34px] font-semibold`}
+          >
+            MeuMonitor
+          </h1>
+        </div>
+        <aside className="font-coolvetica relative rounded-2xl bg-neutral-300 pb-12 pl-10 pt-16 text-xl font-normal leading-5 tracking-wide text-teal-900 ">
+          <div className="mb-7 max-w-[312px]">
+            <p className="w-full">
+              Nós somos o MeuMonitor, mais do que uma simples ferramenta
+              digital, somos uma comunidade dedicada a transformar a experiência
+              educacional. Promovendo a integração eficaz entre monitores e
+              alunos em uma jornada de aprendizado enriquecedora.
+            </p>
+          </div>
+          <div className="mb-12 mr-2 max-w-[540px]">
+            <p className="w-full">
+              Aproveite ao máximo sua experiência no MeuMonitor e embarque na
+              jornada que o levará ao sucesso acadêmico. Explore e alcance seus
+              objetivos. A educação é uma jornada, e estamos aqui para apoiá-lo
+              a cada passo do caminho. Seja parte da mudança!
+            </p>
+          </div>
+          <div className="flex flex-row items-center justify-between pr-7">
+            <div className="flex h-24 w-24 items-center justify-center rounded-full bg-teal-900">
+              <MonitorIcon />
+            </div>
+            <div className="flex h-24 w-24 items-center justify-center rounded-full bg-teal-900">
+              <StudentIcon />
+            </div>
+            <div className="flex h-24 w-24 items-center justify-center rounded-full bg-teal-900">
+              <TeacherIcon />
+            </div>
+          </div>
+          <img
+            className="absolute -right-32 -top-4"
+            alt="alunos lendo"
+            src="/images/alunos-lendo.png"
+            width={319}
+            height={288}
+            sizes="200%"
+          />
+        </aside>
+      </div>
       <div className="flex items-center justify-center py-12 text-white">
         <div className="bg-verdee mx-auto grid w-[375px] rounded-2xl px-8 py-6">
           <div className="grid w-full gap-2 py-6 text-center">
