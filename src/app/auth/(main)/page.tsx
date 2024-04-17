@@ -73,7 +73,7 @@ export default function Auth() {
               <EmailIcon />
               <Input
                 id="email"
-                className="bg-cinza text-black"
+                className="bg-cinza text-black placeholder:text-zinc-500 hover:bg-white focus-visible:bg-white focus-visible:ring-0"
                 placeholder="Email"
                 required
                 type="email"
@@ -84,7 +84,7 @@ export default function Auth() {
               <div className="flex flex-row items-center justify-center gap-2">
                 <PasswordIcon />
                 <Input
-                  className="bg-cinza text-black"
+                  className="bg-cinza text-black placeholder:text-zinc-500 hover:bg-white focus-visible:bg-white focus-visible:ring-0"
                   id="password"
                   placeholder="Senha"
                   required
