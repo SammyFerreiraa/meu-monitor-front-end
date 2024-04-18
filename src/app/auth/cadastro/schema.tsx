@@ -29,10 +29,10 @@ export const registerSchema = z.object({
           message: 'A senha deve conter pelo menos um caractere especial',
         }),
       confirmarSenha: z.string(),
+      token: z.string().optional(),
     })
     .refine((fields) => fields.senha === fields.confirmarSenha, {
       path: ['confirmarSenha'],
       message: 'As senhas não conferem',
     }),
-  token: z.string(),
 })

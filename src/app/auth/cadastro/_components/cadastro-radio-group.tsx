@@ -2,9 +2,17 @@ import { Label } from '@/components/ui/label'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import React from 'react'
 
-const CadastroRadioGroup = () => {
+type CadastroRadioGroupProps = {
+  onValueChange: (value: string) => void
+}
+
+const CadastroRadioGroup = ({ onValueChange }: CadastroRadioGroupProps) => {
   return (
-    <RadioGroup defaultValue="aluno" className="flex flex-row gap-8">
+    <RadioGroup
+      defaultValue="aluno"
+      onValueChange={onValueChange}
+      className="flex flex-row gap-8"
+    >
       <div className="flex items-center space-x-2">
         <RadioGroupItem value="aluno" id="r1" />
         <Label htmlFor="r1">Aluno</Label>
