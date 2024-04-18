@@ -56,7 +56,7 @@ const LoginForm = () => {
               {...form.register('password')}
             />
           </div>
-          <Link className="ml-auto inline-block text-xs underline" href="#">
+          <Link className="ml-auto inline-block text-xs underline" href="/auth">
             Esqueceu sua senha?
           </Link>
         </div>
