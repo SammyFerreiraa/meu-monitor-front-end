@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button'
 import { useForm } from 'react-hook-form'
 import { loginSchema } from '../schema'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { signIn } from 'next-auth/react'
 
 const LoginForm = () => {
   const form = useForm({
@@ -17,9 +18,11 @@ const LoginForm = () => {
 
   const handleSubmit = form.handleSubmit(async (data) => {
     try {
-      setTimeout(() => {
-        console.log(data)
-      }, 100)
+      await signIn('credentials', {
+        email: data.email,
+        password: data.password,
+        callbackUrl: '/',
+      })
     } catch (error) {
       console.log(error)
     }
