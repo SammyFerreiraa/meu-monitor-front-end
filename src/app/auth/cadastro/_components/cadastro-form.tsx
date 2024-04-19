@@ -1,9 +1,5 @@
 'use client'
 
-import EmailGreenIcon from '@/components/icons/EmailGreenIcon'
-import ConfirmaPasswordGreenIcon from '@/components/icons/PasswordChecked'
-import PasswordGreenIcon from '@/components/icons/PasswordGreenIcon'
-import UserIcon from '@/components/icons/UserIcon'
 import { Input } from '@/components/ui/input'
 import Link from 'next/link'
 import React, { useState } from 'react'
@@ -13,6 +9,14 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { registerSchema } from '../schema'
+import CadastroFormErrors from './cadastro-form-errors'
+import {
+  UserIcon,
+  EmailGreenIcon,
+  PasswordGreenIcon,
+  TokenIcon,
+  ConfirmaPasswordGreenIcon,
+} from '@/components/icons'
 
 const CadastroForm = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -24,6 +28,8 @@ const CadastroForm = () => {
 
   const form = useForm<z.infer<typeof registerSchema>>({
     resolver: zodResolver(registerSchema),
+    mode: 'all',
+    criteriaMode: 'all',
   })
 
   return (
@@ -37,13 +43,14 @@ const CadastroForm = () => {
         <div className="flex flex-row items-center justify-center gap-2">
           <UserIcon />
           <Input
-            id="usuario"
             className="bg-cinza text-black placeholder:text-zinc-500 hover:bg-white focus-visible:bg-white focus-visible:ring-0"
             placeholder="Usuário"
-            required
             type="text"
             autoComplete="off"
             {...form.register('credentials.usuario')}
+          />
+          <CadastroFormErrors
+            error={form.formState.errors.credentials?.usuario}
           />
         </div>
         <div className="flex flex-row items-center justify-center gap-2">
@@ -52,10 +59,12 @@ const CadastroForm = () => {
             className="bg-cinza text-black placeholder:text-zinc-500 hover:bg-white focus-visible:bg-white focus-visible:ring-0"
             id="email"
             placeholder="Email"
-            required
             type="email"
             autoComplete="off"
             {...form.register('credentials.email')}
+          />
+          <CadastroFormErrors
+            error={form.formState.errors.credentials?.email}
           />
         </div>
         <div className="flex flex-row items-center justify-center gap-2">
@@ -64,10 +73,12 @@ const CadastroForm = () => {
             className="bg-cinza text-black placeholder:text-zinc-500 hover:bg-white focus-visible:bg-white focus-visible:ring-0"
             id="senha"
             placeholder="Senha"
-            required
             type="senha"
             autoComplete="off"
             {...form.register('credentials.senha')}
+          />
+          <CadastroFormErrors
+            error={form.formState.errors.credentials?.senha}
           />
         </div>
         <div className="flex flex-row items-center justify-center gap-2">
@@ -76,21 +87,24 @@ const CadastroForm = () => {
             className="bg-cinza text-black placeholder:text-zinc-500 hover:bg-white focus-visible:bg-white focus-visible:ring-0"
             id="confirmarSenha"
             placeholder="Confirmar Senha"
-            required
             type="confirmarSenha"
             autoComplete="off"
             {...form.register('credentials.confirmarSenha')}
+          />
+          <CadastroFormErrors
+            error={form.formState.errors.credentials?.confirmarSenha}
           />
         </div>
         <div
           className={`flex-row items-center justify-center gap-2 ${showAdditionalInput ? 'flex' : 'hidden'}`}
         >
-          <ConfirmaPasswordGreenIcon />
+          <TokenIcon />
           <Input
             className="bg-cinza text-black placeholder:text-zinc-500 hover:bg-white focus-visible:bg-white focus-visible:ring-0"
             id="token"
             placeholder="Token"
             type="token"
+            required={showAdditionalInput}
             autoComplete="off"
             {...form.register('credentials.token')}
           />
