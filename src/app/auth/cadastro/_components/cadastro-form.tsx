@@ -73,7 +73,7 @@ const CadastroForm = () => {
             className="bg-cinza text-black placeholder:text-zinc-500 hover:bg-white focus-visible:bg-white focus-visible:ring-0"
             id="senha"
             placeholder="Senha"
-            type="senha"
+            type="password"
             autoComplete="off"
             {...form.register('credentials.senha')}
           />
@@ -87,7 +87,7 @@ const CadastroForm = () => {
             className="bg-cinza text-black placeholder:text-zinc-500 hover:bg-white focus-visible:bg-white focus-visible:ring-0"
             id="confirmarSenha"
             placeholder="Confirmar Senha"
-            type="confirmarSenha"
+            type="password"
             autoComplete="off"
             {...form.register('credentials.confirmarSenha')}
           />
@@ -115,7 +115,7 @@ const CadastroForm = () => {
           form="cadastro"
           className="my-4 w-full bg-emerald-600 font-light text-emerald-50 shadow-[6.0px_10.0px_10.0px_rgba(0,0,0,0.38)] transition-colors hover:bg-emerald-500 hover:shadow-[3.0px_6.0px_6.0px_rgba(0,0,0,0.38)]"
           type="submit"
-          disabled={form.formState.isSubmitting}
+          disabled={form.formState.isSubmitting || !form.formState.isValid}
         >
           {form.formState.isSubmitting ? 'Registrando...' : 'Registrar'}
         </Button>
