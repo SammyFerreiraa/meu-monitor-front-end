@@ -30,6 +30,7 @@ export const registerSchema = z.object({
         }),
       confirmarSenha: z.string(),
       token: z.string().optional(),
+      userType: z.string(),
     })
     .refine((fields) => fields.senha === fields.confirmarSenha, {
       path: ['confirmarSenha'],

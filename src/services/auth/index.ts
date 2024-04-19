@@ -26,11 +26,12 @@ export const {
 
       async authorize(credentials) {
         try {
-          const loginUrl = process.env.NEXT_PUBLIC_URL_LOGIN as string
-
           const { email, password } = await loginSchema.parseAsync(credentials)
 
-          const getUser = await axios.post(loginUrl, { email, password })
+          const getUser = await axios.post(
+            `${process.env.NEXT_PUBLIC_URL_BASE}auth/signin`,
+            { email, password },
+          )
 
           const user = {
             user: {

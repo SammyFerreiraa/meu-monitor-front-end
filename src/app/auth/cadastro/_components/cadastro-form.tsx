@@ -17,25 +17,43 @@ import {
   TokenIcon,
   ConfirmaPasswordGreenIcon,
 } from '@/components/icons'
+import { register } from '../actions'
+import { toast } from '@/components/ui/use-toast'
 
 const CadastroForm = () => {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    console.log(form.getValues())
-  }
-
-  const [showAdditionalInput, setShowAdditionalInput] = useState(false)
-
   const form = useForm<z.infer<typeof registerSchema>>({
     resolver: zodResolver(registerSchema),
     mode: 'all',
     criteriaMode: 'all',
+    defaultValues: {
+      credentials: {
+        userType: 'aluno',
+      },
+    },
   })
+
+  const handleSubmit = form.handleSubmit(
+    async (data: z.infer<typeof registerSchema>) => {
+      try {
+        await register({ data })
+        toast({
+          title: 'Cadastrado com sucesso',
+          description: `${data.credentials.usuario}, confirme seu email para acesso ao sistema`,
+        })
+        form.reset()
+      } catch (error) {
+        console.log(error)
+      }
+    },
+  )
+  const [showAdditionalInput, setShowAdditionalInput] = useState(false)
 
   return (
     <>
       <CadastroRadioGroup
         onValueChange={(value) => {
+          form.setValue('credentials.userType', value)
+          if (value !== 'monitor') form.setValue('credentials.token', '')
           setShowAdditionalInput(value === 'monitor')
         }}
       />
@@ -115,7 +133,7 @@ const CadastroForm = () => {
           form="cadastro"
           className="my-4 w-full bg-emerald-600 font-light text-emerald-50 shadow-[6.0px_10.0px_10.0px_rgba(0,0,0,0.38)] transition-colors hover:bg-emerald-500 hover:shadow-[3.0px_6.0px_6.0px_rgba(0,0,0,0.38)]"
           type="submit"
-          disabled={form.formState.isSubmitting || !form.formState.isValid}
+          disabled={form.formState.isSubmitting}
         >
           {form.formState.isSubmitting ? 'Registrando...' : 'Registrar'}
         </Button>
