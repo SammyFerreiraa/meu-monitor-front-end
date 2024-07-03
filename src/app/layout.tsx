@@ -17,8 +17,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className=" h-full w-full">
-      <body className={`${inter.className} "w-full h-full`}>
+      <body className={`${inter.className} "w-full flex h-full flex-col`}>
         {children}
+        <footer className="flex w-full items-center justify-center gap-4 bg-[#0d192b] py-2 text-xs text-white">
+          <p>Contrato do Usuário</p>
+          <p>Politicas de Privacidade</p>
+          <p>Politicas de Cookies</p>
+        </footer>
         <Toaster />
       </body>
     </html>
