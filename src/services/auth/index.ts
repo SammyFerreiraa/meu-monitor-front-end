@@ -29,7 +29,7 @@ export const {
           const { email, password } = await loginSchema.parseAsync(credentials)
 
           const getUser = await axios.post(
-            `${process.env.NEXT_PUBLIC_URL_BASE}auth/signin`,
+            `${process.env.NEXT_PUBLIC_URL_BASE}/auth/signin`,
             { email, password },
           )
 

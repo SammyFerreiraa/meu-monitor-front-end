@@ -19,7 +19,7 @@ export const register = async ({
       token: data.credentials.token,
     }
     await axios
-      .post(`${process.env.NEXT_PUBLIC_URL_BASE}auth/signup`, body)
+      .post(`${process.env.NEXT_PUBLIC_URL_BASE}/auth/signup`, body)
       .then((res) => {
         if (res.status !== 201) throw new Error('Erro ao cadastrar')
       })
