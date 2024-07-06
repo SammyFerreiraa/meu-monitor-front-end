@@ -1,172 +1,105 @@
-import { PlusIcon } from '@radix-ui/react-icons'
-import Header from './_components/header'
+"use client";
+
+import Header from "./_components/header";
+import TableItem from "./_components/table-item";
+import { Schedule, ScheduleItem } from "../../@types";
 
 export default async function Home() {
+  const schedule: Schedule = {
+    "Segunda-Feira": [
+      {
+        Nome: "Matemática Discreta",
+        Hora: "12:30h - 13:30h",
+        Local: "Bloco 2 Sala 4",
+        Andar: "1º Andar",
+      },
+      {
+        Nome: "Estrutura de Dados",
+        Hora: "14:00h - 15:00h",
+        Local: "Bloco 2 Sala 5",
+        Andar: "1º Andar",
+      },
+      { 
+        Nome: "Física - I", 
+        Hora: "15:30h - 16:30h", 
+        Local: "Bloco 2 Sala 6",
+        Andar: "1º Andar",
+      },
+    ],
+    "Terça-Feira": [
+      {
+        Nome: "Fundamentos da Programação",
+        Hora: "12:30h - 13:30h",
+        Local: "Bloco 3 Sala 1",
+        Andar: "2º Andar",
+      },
+    ],
+    "Quarta-Feira": [
+      {
+        Nome: "Matemática Discreta",
+        Hora: "10:00h - 11:00h",
+        Local: "Bloco 4 Sala 2",
+        Andar: "1º Andar",
+      },
+      { 
+        Nome: "Cálculo - I", 
+        Hora: "11:30h - 12:30h", 
+        Local: "Bloco 4 Sala 3",
+        Andar: "1º Andar",
+      },
+    ],
+    "Quinta-Feira": [
+      {
+        Nome: "Almoço com Código",
+        Hora: "08:00h - 09:00h",
+        Local: "Bloco 5 Sala 1",
+        Andar: "Térreo",
+      },
+    ],
+    "Sexta-Feira": [
+      {
+        Nome: "Arquitetura de Computadores",
+        Hora: "09:00h - 10:00h",
+        Local: "Bloco 4 Sala 3",
+        Andar: "1º Andar",
+      },
+    ],
+  };
+
   return (
     <>
       <Header />
       <main className="flex flex-1 flex-col items-center justify-center px-14 py-14">
         <section className="flex h-full w-full max-w-screen-xl flex-col items-center justify-center gap-8 rounded-sm bg-[#031229] p-5">
           <div className="grid w-full grid-cols-5 gap-8">
-            <p className="rounded-md bg-[#0A8967] px-6 py-6 text-center text-2xl font-bold text-white">
-              Segunda-Feira
-            </p>
-            <p className="rounded-md bg-[#0A8967] px-6 py-6 text-center text-2xl font-bold text-white">
-              Terça-Feira
-            </p>
-            <p className="rounded-md bg-[#0A8967] px-6 py-6 text-center text-2xl font-bold text-white">
-              Quarta-Feira
-            </p>
-            <p className="rounded-md bg-[#0A8967] px-6 py-6 text-center text-2xl font-bold text-white">
-              Quinta-Feira
-            </p>
-            <p className="rounded-md bg-[#0A8967] px-6 py-6 text-center text-2xl font-bold text-white">
-              Sexta-Feira
-            </p>
+            {Object.keys(schedule).map((day) => (
+              <p
+                key={day}
+                className="rounded-md bg-[#0A8967] px-6 py-6 text-center text-2xl font-bold text-white"
+              >
+                {day}
+              </p>
+            ))}
           </div>
-          {/* Inicio Tabelas  */}
           <div className="grid h-full w-full grid-cols-5 gap-8 overflow-y-auto">
-            <div className="flex h-1 flex-col gap-4 pb-4">
-              <div className="rounded-md bg-[#DCDCDC] p-3 hover:bg-[#C0C0C0]">
-                <p className="text-lg font-bold">Matemática discreta</p>
-                <p className="">12:30h - 13:30h</p>
-                <div className="flex flex-row items-center justify-between">
-                  <p className="">Bloco 2 Sala 4</p>
-                  <PlusIcon className="size-6 cursor-pointer rounded-full border-2 border-[#0A8967] text-[#0A8967] hover:border-black hover:bg-[#07F9A2] hover:text-black" />
-                </div>
+            {Object.keys(schedule).map((day, index) => (
+              <div key={index} className="flex h-1 flex-col gap-4 pb-4">
+                {schedule[day as keyof Schedule].map(
+                  (item: ScheduleItem, idx: number) => (
+                    <TableItem
+                      key={idx}
+                      Nome={item.Nome}
+                      Hora={item.Hora}
+                      Local={item.Local}
+                      Andar={item.Andar}
+                    />
+                  ),
+                )}
               </div>
-              <div className="rounded-md bg-[#DCDCDC] p-3 hover:bg-[#C0C0C0]">
-                <p className="text-lg font-bold">Matemática discreta</p>
-                <p className="">12:30h - 13:30h</p>
-                <div className="flex flex-row items-center justify-between">
-                  <p className="">Bloco 2 Sala 4</p>
-                  <PlusIcon className="size-6 cursor-pointer rounded-full border-2 border-[#0A8967] text-[#0A8967] hover:border-black hover:bg-[#07F9A2] hover:text-black" />
-                </div>
-              </div>
-              <div className="rounded-md bg-[#DCDCDC] p-3 hover:bg-[#C0C0C0]">
-                <p className="text-lg font-bold">Matemática discreta</p>
-                <p className="">12:30h - 13:30h</p>
-                <div className="flex flex-row items-center justify-between">
-                  <p className="">Bloco 2 Sala 4</p>
-                  <PlusIcon className="size-6 cursor-pointer rounded-full border-2 border-[#0A8967] text-[#0A8967] hover:border-black hover:bg-[#07F9A2] hover:text-black" />
-                </div>
-              </div>
-            </div>
-            <div className="flex h-1 flex-col gap-4 pb-4">
-              <div className="rounded-md bg-[#DCDCDC] p-3 hover:bg-[#C0C0C0]">
-                <p className="text-lg font-bold">Matemática discreta</p>
-                <p className="">12:30h - 13:30h</p>
-                <div className="flex flex-row items-center justify-between">
-                  <p className="">Bloco 2 Sala 4</p>
-                  <PlusIcon className="size-6 cursor-pointer rounded-full border-2 border-[#0A8967] text-[#0A8967] hover:border-black hover:bg-[#07F9A2] hover:text-black" />
-                </div>
-              </div>
-              <div className="rounded-md bg-[#DCDCDC] p-3 hover:bg-[#C0C0C0]">
-                <p className="text-lg font-bold">Matemática discreta</p>
-                <p className="">12:30h - 13:30h</p>
-                <div className="flex flex-row items-center justify-between">
-                  <p className="">Bloco 2 Sala 4</p>
-                  <PlusIcon className="size-6 cursor-pointer rounded-full border-2 border-[#0A8967] text-[#0A8967] hover:border-black hover:bg-[#07F9A2] hover:text-black" />
-                </div>
-              </div>
-              <div className="rounded-md bg-[#DCDCDC] p-3 hover:bg-[#C0C0C0]">
-                <p className="text-lg font-bold">Matemática discreta</p>
-                <p className="">12:30h - 13:30h</p>
-                <div className="flex flex-row items-center justify-between">
-                  <p className="">Bloco 2 Sala 4</p>
-                  <PlusIcon className="size-6 cursor-pointer rounded-full border-2 border-[#0A8967] text-[#0A8967] hover:border-black hover:bg-[#07F9A2] hover:text-black" />
-                </div>
-              </div>
-              <div className="rounded-md bg-[#DCDCDC] p-3 hover:bg-[#C0C0C0]">
-                <p className="text-lg font-bold">Matemática discreta</p>
-                <p className="">12:30h - 13:30h</p>
-                <div className="flex flex-row items-center justify-between">
-                  <p className="">Bloco 2 Sala 4</p>
-                  <PlusIcon className="size-6 cursor-pointer rounded-full border-2 border-[#0A8967] text-[#0A8967] hover:border-black hover:bg-[#07F9A2] hover:text-black" />
-                </div>
-              </div>
-              <div className="rounded-md bg-[#DCDCDC] p-3 hover:bg-[#C0C0C0]">
-                <p className="text-lg font-bold">Matemática discreta</p>
-                <p className="">12:30h - 13:30h</p>
-                <div className="flex flex-row items-center justify-between">
-                  <p className="">Bloco 2 Sala 4</p>
-                  <PlusIcon className="size-6 cursor-pointer rounded-full border-2 border-[#0A8967] text-[#0A8967] hover:border-black hover:bg-[#07F9A2] hover:text-black" />
-                </div>
-              </div>
-              <div className="rounded-md bg-[#DCDCDC] p-3 hover:bg-[#C0C0C0]">
-                <p className="text-lg font-bold">Matemática discreta</p>
-                <p className="">12:30h - 13:30h</p>
-                <div className="flex flex-row items-center justify-between">
-                  <p className="">Bloco 2 Sala 4</p>
-                  <PlusIcon className="size-6 cursor-pointer rounded-full border-2 border-[#0A8967] text-[#0A8967] hover:border-black hover:bg-[#07F9A2] hover:text-black" />
-                </div>
-              </div>
-            </div>
-            <div className="flex h-1 flex-col gap-4 pb-4">
-              <div className="rounded-md bg-[#DCDCDC] p-3 hover:bg-[#C0C0C0]">
-                <p className="text-lg font-bold">Matemática discreta</p>
-                <p className="">12:30h - 13:30h</p>
-                <div className="flex flex-row items-center justify-between">
-                  <p className="">Bloco 2 Sala 4</p>
-                  <PlusIcon className="size-6 cursor-pointer rounded-full border-2 border-[#0A8967] text-[#0A8967] hover:border-black hover:bg-[#07F9A2] hover:text-black" />
-                </div>
-              </div>
-              <div className="rounded-md bg-[#DCDCDC] p-3 hover:bg-[#C0C0C0]">
-                <p className="text-lg font-bold">Matemática discreta</p>
-                <p className="">12:30h - 13:30h</p>
-                <div className="flex flex-row items-center justify-between">
-                  <p className="">Bloco 2 Sala 4</p>
-                  <PlusIcon className="size-6 cursor-pointer rounded-full border-2 border-[#0A8967] text-[#0A8967] hover:border-black hover:bg-[#07F9A2] hover:text-black" />
-                </div>
-              </div>
-            </div>
-            <div className="flex h-1 flex-col gap-4 pb-4">
-              <div className="rounded-md bg-[#DCDCDC] p-3 hover:bg-[#C0C0C0]">
-                <p className="text-lg font-bold">Matemática discreta</p>
-                <p className="">12:30h - 13:30h</p>
-                <div className="flex flex-row items-center justify-between">
-                  <p className="">Bloco 2 Sala 4</p>
-                  <PlusIcon className="size-6 cursor-pointer rounded-full border-2 border-[#0A8967] text-[#0A8967] hover:border-black hover:bg-[#07F9A2] hover:text-black" />
-                </div>
-              </div>
-              <div className="rounded-md bg-[#DCDCDC] p-3 hover:bg-[#C0C0C0]">
-                <p className="text-lg font-bold">Matemática discreta</p>
-                <p className="">12:30h - 13:30h</p>
-                <div className="flex flex-row items-center justify-between">
-                  <p className="">Bloco 2 Sala 4</p>
-                  <PlusIcon className="size-6 cursor-pointer rounded-full border-2 border-[#0A8967] text-[#0A8967] hover:border-black hover:bg-[#07F9A2] hover:text-black" />
-                </div>
-              </div>
-            </div>
-            <div className="flex h-1 flex-col gap-4 pb-4">
-              <div className="rounded-md bg-[#DCDCDC] p-3 hover:bg-[#C0C0C0]">
-                <p className="text-lg font-bold">Matemática discreta</p>
-                <p className="">12:30h - 13:30h</p>
-                <div className="flex flex-row items-center justify-between">
-                  <p className="">Bloco 2 Sala 4</p>
-                  <PlusIcon className="size-6 cursor-pointer rounded-full border-2 border-[#0A8967] text-[#0A8967] hover:border-black hover:bg-[#07F9A2] hover:text-black" />
-                </div>
-              </div>
-              <div className="rounded-md bg-[#DCDCDC] p-3 hover:bg-[#C0C0C0]">
-                <p className="text-lg font-bold">Matemática discreta</p>
-                <p className="">12:30h - 13:30h</p>
-                <div className="flex flex-row items-center justify-between">
-                  <p className="">Bloco 2 Sala 4</p>
-                  <PlusIcon className="size-6 cursor-pointer rounded-full border-2 border-[#0A8967] text-[#0A8967] hover:border-black hover:bg-[#07F9A2] hover:text-black" />
-                </div>
-              </div>
-              <div className="rounded-md bg-[#DCDCDC] p-3 hover:bg-[#C0C0C0]">
-                <p className="text-lg font-bold">Matemática discreta</p>
-                <p className="">12:30h - 13:30h</p>
-                <div className="flex flex-row items-center justify-between">
-                  <p className="">Bloco 2 Sala 4</p>
-                  <PlusIcon className="size-6 cursor-pointer rounded-full border-2 border-[#0A8967] text-[#0A8967] hover:border-black hover:bg-[#07F9A2] hover:text-black" />
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </section>
       </main>
     </>
-  )
+  );
 }
