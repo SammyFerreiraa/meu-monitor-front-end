@@ -9,3 +9,18 @@ declare module 'next-auth' {
     user: userProps
   }
 }
+
+export type ScheduleItem = {
+  Nome: string;
+  Hora: string;
+  Local: string;
+  Andar: string;
+};
+
+export type Schedule = {
+  "Segunda-Feira": ScheduleItem[];
+  "Terça-Feira": ScheduleItem[];
+  "Quarta-Feira": ScheduleItem[];
+  "Quinta-Feira": ScheduleItem[];
+  "Sexta-Feira": ScheduleItem[];
+};
