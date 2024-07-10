@@ -1,14 +1,23 @@
-import React from 'react'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
+"use client";
+
+import React, { useState } from 'react';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import HeaderFilter from '@/app/(main)/_components/header_filter';
 
 const Header = () => {
+  const [isFilterVisible, setIsFilterVisible] = useState(false);
+
+  const toggleFilter = () => {
+    setIsFilterVisible(!isFilterVisible);
+  };
+
   return (
     <header className="flex flex-row items-center justify-between bg-[#031229] p-2.5 px-12">
       <img src="/images/LogoBranca.png" alt="logo" className="size-24" />
       <div className="flex min-w-[551px] flex-row items-center gap-4">
-        <div className="cursor-pointer rounded-full bg-[#D9D9D9] p-2">
+        <div onClick={toggleFilter} className="cursor-pointer rounded-full bg-[#D9D9D9] p-2">
           <svg
             width="33"
             height="33"
@@ -55,8 +64,9 @@ const Header = () => {
           <AvatarFallback>SF</AvatarFallback>
         </Avatar>
       </div>
+      {isFilterVisible && <HeaderFilter onClose={toggleFilter} />}
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
