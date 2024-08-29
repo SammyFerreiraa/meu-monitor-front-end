@@ -5,12 +5,18 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import HeaderFilter from '@/app/(main)/_components/header_filter';
+import HeaderAddMonitoria from '@/app/(main)/_components/header_add_monitoria';
 
 const Header = () => {
   const [isFilterVisible, setIsFilterVisible] = useState(false);
+  const [IsAddVisible, setIsAddvisible] = useState(false);
 
   const toggleFilter = () => {
     setIsFilterVisible(!isFilterVisible);
+  };
+
+  const toggleAdd = () => {
+    setIsAddvisible(!IsAddVisible);
   };
 
   return (
@@ -33,7 +39,7 @@ const Header = () => {
         </div>
         <Input type="text" placeholder="" className="h-14 bg-[#DCDCDC]" />
       </div>
-      <div className="flex flex-row items-center justify-center gap-10">
+      <div onClick={toggleAdd} className="flex flex-row items-center justify-center gap-10">
         <Button className="flex h-14 flex-row items-center gap-2.5 bg-[#E4E4E4] text-[#0C5149] hover:bg-[#E4E4E4]">
           Adicionar Monitoria
           <svg
@@ -65,6 +71,7 @@ const Header = () => {
         </Avatar>
       </div>
       {isFilterVisible && <HeaderFilter onClose={toggleFilter} />}
+      {IsAddVisible && <HeaderAddMonitoria onClose={toggleAdd}/>}
     </header>
   );
 };

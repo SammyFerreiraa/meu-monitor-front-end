@@ -33,8 +33,7 @@ const HeaderFilter: React.FC<HeaderFilterProps> = ({ onClose }) => {
   const handleResetDiscipline = () => setDiscipline('');
 
   return (
-    <div className=" fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-
+    <div className=" fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
       <div className="relative bg-gray-100 w-[490px] h-[390px] p-6 rounded-lg shadow-lg">
         <div className="flex items-center mb-2">
         <div>
